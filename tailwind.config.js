@@ -14,6 +14,10 @@ module.exports = {
       animation: {
         scroll: 'scroll 15s linear infinite',
       },
+      spacing: {
+        'section-y': '4rem',
+        'lg-section-y': '6rem',
+      },
     },
   },
   plugins: [],

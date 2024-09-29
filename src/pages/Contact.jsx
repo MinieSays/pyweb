@@ -1,28 +1,28 @@
 import React, { useEffect } from "react";
 
 const Contact = () => {
-  
   useEffect(() => {
     window.scrollTo(0, 0);
-  },[])
+  }, []);
 
   return (
     <div className="min-h-screen flex items-center justify-center py-12 px-6 sm:px-8 lg:px-24">
       <div className="bg-white max-w-4xl w-full rounded-lg  p-8">
-        {/* Title */}
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 text-center">
           Get In Touch
         </h2>
         <p className="text-gray-600 text-center mb-12">
-          Feel free to drop us a message for any inquiries or assistance. We'd love to help you out!
+          Feel free to drop us a message for any inquiries or assistance. We'd
+          love to help you out!
         </p>
 
-        {/* Form */}
         <form action="#" method="POST" className="space-y-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Name Field */}
             <div className="flex flex-col">
-              <label htmlFor="name" className="text-sm font-semibold text-gray-700 mb-2">
+              <label
+                htmlFor="name"
+                className="text-sm font-semibold text-gray-700 mb-2"
+              >
                 Full Name
               </label>
               <input
@@ -35,9 +35,11 @@ const Contact = () => {
               />
             </div>
 
-            {/* Phone Number Field */}
             <div className="flex flex-col">
-              <label htmlFor="phone" className="text-sm font-semibold text-gray-700 mb-2">
+              <label
+                htmlFor="phone"
+                className="text-sm font-semibold text-gray-700 mb-2"
+              >
                 Phone Number
               </label>
               <input
@@ -51,9 +53,11 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Subject Field */}
           <div className="flex flex-col">
-            <label htmlFor="subject" className="text-sm font-semibold text-gray-700 mb-2">
+            <label
+              htmlFor="subject"
+              className="text-sm font-semibold text-gray-700 mb-2"
+            >
               Subject
             </label>
             <input
@@ -66,9 +70,11 @@ const Contact = () => {
             />
           </div>
 
-          {/* Message Field */}
           <div className="flex flex-col">
-            <label htmlFor="message" className="text-sm font-semibold text-gray-700 mb-2">
+            <label
+              htmlFor="message"
+              className="text-sm font-semibold text-gray-700 mb-2"
+            >
               Message
             </label>
             <textarea
@@ -81,7 +87,6 @@ const Contact = () => {
             ></textarea>
           </div>
 
-          {/* Submit Button */}
           <div className="text-center">
             <button
               type="submit"

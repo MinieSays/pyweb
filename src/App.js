@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import "./App.css";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
@@ -10,6 +11,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 function App() {
   return (
     <Router>
+      <Toaster />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

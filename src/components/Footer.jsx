@@ -1,24 +1,28 @@
-import React from 'react';
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
-import logo from '../assets/footerlogo.png'; // Replace with your logo path
+import React from "react";
+import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import logo from "../assets/footerlogo.png";
 
 const Footer = () => {
   return (
     <footer className="bg-gray-900 text-white py-8 border-t">
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
-          {/* Brand Logo and Name */}
           <div className="flex flex-col items-center md:items-start">
             <Link to="/" className="flex items-center space-x-2 mb-4 md:mb-0">
-              <img loading="lazy" src={logo} className="h-12 w-auto" alt="Brand Logo" />
+              <img
+                loading="lazy"
+                src={logo}
+                className="h-12 w-auto"
+                alt="Brand Logo"
+              />
             </Link>
             <p className="text-gray-400 text-sm">
-              &copy; {new Date().getFullYear()} Minie Sayadeth. All Rights Reserved.
+              &copy; {new Date().getFullYear()} Minie Sayadeth. All Rights
+              Reserved.
             </p>
           </div>
 
-          {/* Navigation Links */}
           <div className="flex flex-wrap justify-center space-x-6">
             <Link
               to="/"
@@ -46,7 +50,6 @@ const Footer = () => {
             </Link>
           </div>
 
-          {/* Social Media Icons */}
           <div className="flex space-x-6">
             <a
               href="#"

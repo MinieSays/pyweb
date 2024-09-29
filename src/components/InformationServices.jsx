@@ -6,7 +6,6 @@ const InformationServices = () => {
     <section className="py-10 sm:py-16 lg:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-y-8 gap-x-16 xl:gap-x-24 items-center">
-          {/* Second column (originally first) */}
           <div>
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 max-w-[500px]">
               Web design &{" "}
@@ -36,11 +35,11 @@ const InformationServices = () => {
             </p>
           </div>
 
-          {/* First column (originally second) */}
           <div className="relative mb-12">
             <div className="flex justify-center lg:justify-start">
               <div className="relative w-full sm:w-[564px] h-[646px]  rounded-3xl ">
-                <img loading="lazy"
+                <img
+                  loading="lazy"
                   className="w-full h-full rounded-3xl object-cover"
                   src={img}
                   alt="About Us"
@@ -54,7 +53,7 @@ const InformationServices = () => {
                     <p className="text-3xl sm:text-4xl font-bold text-yellow-500 flex-shrink-0">
                       37%
                     </p>
-                    <p className="pl-6 text-sm sm:text-lg font-medium font-semibold">
+                    <p className="pl-6 text-sm sm:text-lg font-medium">
                       High Conversions <br /> on Landing Pages
                     </p>
                   </div>

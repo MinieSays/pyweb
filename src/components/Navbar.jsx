@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
-import logo from "../assets/logo.png"; // Replace with your logo path
+import { Link } from "react-router-dom";
+import logo from "../assets/logo.png";
 import Modal from "./Modal";
 
 const Navbar = () => {
@@ -17,22 +17,20 @@ const Navbar = () => {
   };
 
   const closeMenu = () => {
-    setMenuOpen(false); // Close the menu when a link is clicked
+    setMenuOpen(false);
   };
 
   return (
     <>
       <nav className="bg-white border-b">
         <div className="max-w-screen-xl mx-auto px-4 py-3 flex justify-between items-center">
-          {/* Logo */}
           <Link to="/" className="flex items-center space-x-2" onClick={closeMenu}>
             <img loading="lazy" src={logo} className="h-12 w-auto" alt="Brand Logo" />
           </Link>
 
-          {/* Mobile Menu Toggle Button */}
           <button
             onClick={toggleMenu}
-            className="md:hidden text-[#ffc857] focus:outline-none"
+            className="md:hidden  focus:outline-none"
           >
             {menuOpen ? (
               <FaTimes className="w-7 h-7" />
@@ -41,11 +39,10 @@ const Navbar = () => {
             )}
           </button>
 
-          {/* Navigation Links */}
           <div
             className={`${
               menuOpen ? "block" : "hidden"
-            } z-50 w-full md:w-auto md:flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-6 absolute md:static top-16 left-0 md:top-auto md:left-auto bg-white md:bg-transparent md:shadow-none shadow-lg py-6 md:py-0 transition-all duration-300 z-10`}
+            } w-full md:w-auto md:flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-6 absolute md:static top-16 left-0 md:top-auto md:left-auto bg-white md:bg-transparent md:shadow-none shadow-lg py-6 md:py-0 transition-all duration-300 z-50`}
           >
             <ul className="flex flex-col md:flex-row md:items-center md:space-x-6 space-y-6 md:space-y-0 text-center md:text-left">
               <li>

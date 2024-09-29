@@ -1,8 +1,17 @@
 import React, { useEffect, useState } from "react";
+import emailjs from "emailjs-com";
+import toast, { Toaster } from "react-hot-toast";
 
 const Modal = ({ showModal, toggleModal }) => {
   const [showBackground, setShowBackground] = useState(false);
-  const [selectedService, setSelectedService] = useState("");
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    message: "",
+    time: "",
+    service: "",
+  });
 
   useEffect(() => {
     if (showModal) {
@@ -12,12 +21,41 @@ const Modal = ({ showModal, toggleModal }) => {
     }
   }, [showModal]);
 
-  const handleServiceChange = (event) => {
-    setSelectedService(event.target.value);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .send(
+        "service_42ic5hi", 
+        "template_fyl274n", 
+        formData,
+        "7wxX0U7TD5w60Xlp_"
+      )
+      .then(
+        (result) => {
+          toast.success(
+            "We've successfully received your message and will respond to you within 48 hours.",
+            {
+              duration: 7000,
+            }
+          );
+          toggleModal();
+        },
+        (error) => {
+          toast.error("Something went wrong. Please try again.");
+          console.error("Error sending email:", error.text);
+        }
+      );
   };
 
   return (
     <>
+      <Toaster />
       {showModal && (
         <div
           className={`fixed inset-0 bg-black bg-opacity-70 z-50 flex justify-center items-center transition-transform duration-700 ease-out ${
@@ -29,7 +67,6 @@ const Modal = ({ showModal, toggleModal }) => {
             className="bg-white rounded-lg w-full max-w-lg mx-4 p-8 relative shadow-xl transition-all duration-300 ease-in-out transform"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close Button */}
             <button
               onClick={toggleModal}
               className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl"
@@ -37,17 +74,11 @@ const Modal = ({ showModal, toggleModal }) => {
               &times;
             </button>
 
-            {/* Modal Title */}
             <h2 className="text-3xl font-semibold mb-6 text-gray-800 text-center">
               Let’s Chat Over Coffee
             </h2>
 
-            {/* Form */}
-            <form
-              action="https://formspree.io/f/xzzplwnv"
-              method="POST"
-              className="space-y-6"
-            >
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div className="flex space-x-4">
                 <div className="flex-1">
                   <label
@@ -60,6 +91,8 @@ const Modal = ({ showModal, toggleModal }) => {
                     type="text"
                     id="name"
                     name="name"
+                    value={formData.name}
+                    onChange={handleChange}
                     required
                     className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
                   />
@@ -76,6 +109,16 @@ const Modal = ({ showModal, toggleModal }) => {
                     type="tel"
                     id="phone"
                     name="phone"
+                    value={formData.phone}
+                    onChange={(e) => {
+                      const onlyNumbers = e.target.value.replace(/[^0-9]/g, "");
+                      handleChange({
+                        target: {
+                          name: e.target.name,
+                          value: onlyNumbers,
+                        },
+                      });
+                    }}
                     required
                     className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
                   />
@@ -93,6 +136,8 @@ const Modal = ({ showModal, toggleModal }) => {
                   type="email"
                   id="email"
                   name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   required
                   className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
                 />
@@ -109,6 +154,8 @@ const Modal = ({ showModal, toggleModal }) => {
                   id="message"
                   name="message"
                   rows="4"
+                  value={formData.message}
+                  onChange={handleChange}
                   required
                   className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
                 ></textarea>
@@ -124,6 +171,8 @@ const Modal = ({ showModal, toggleModal }) => {
                 <select
                   id="time"
                   name="time"
+                  value={formData.time}
+                  onChange={handleChange}
                   required
                   className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
                 >
@@ -146,54 +195,24 @@ const Modal = ({ showModal, toggleModal }) => {
                   Select Service
                 </legend>
                 <div className="grid grid-cols-2 gap-4">
-                  <label className="flex items-center">
-                    <input
-                      type="radio"
-                      name="service"
-                      value="Web Design"
-                      checked={selectedService === "Web Design"}
-                      onChange={handleServiceChange}
-                      className="mr-2"
-                    />
-                    Web Design
-                  </label>
-                  <label className="flex items-center">
-                    <input
-                      type="radio"
-                      name="service"
-                      value="SEO"
-                      checked={selectedService === "SEO"}
-                      onChange={handleServiceChange}
-                      className="mr-2"
-                    />
-                    SEO
-                  </label>
-                  <label className="flex items-center">
-                    <input
-                      type="radio"
-                      name="service"
-                      value="Marketing"
-                      checked={selectedService === "Marketing"}
-                      onChange={handleServiceChange}
-                      className="mr-2"
-                    />
-                    Marketing
-                  </label>
-                  <label className="flex items-center">
-                    <input
-                      type="radio"
-                      name="service"
-                      value="Social Media"
-                      checked={selectedService === "Social Media"}
-                      onChange={handleServiceChange}
-                      className="mr-2"
-                    />
-                    Social Media
-                  </label>
+                  {["Web Design", "SEO", "Marketing", "Social Media"].map(
+                    (service) => (
+                      <label key={service} className="flex items-center">
+                        <input
+                          type="radio"
+                          name="service"
+                          value={service}
+                          checked={formData.service === service}
+                          onChange={handleChange}
+                          className="mr-2"
+                        />
+                        {service}
+                      </label>
+                    )
+                  )}
                 </div>
               </fieldset>
 
-              {/* Submit Button */}
               <button
                 type="submit"
                 className="w-full py-3 px-6 bg-yellow-500 font-semibold rounded-md hover:bg-yellow-600 transition duration-300 text-black"
